@@ -43,15 +43,18 @@
   </main>
 
   <audio id="prize-audio" src="./audio/cancion.ogg" preload="auto" hidden></audio>
-  <dialog id="prize-dialog" aria-label="Regalo de cumpleaños">
+  <dialog id="prize-dialog" aria-labelledby="prize-title">
     <div class="prize-confetti" id="prize-confetti" aria-hidden="true"></div>
     <div class="reveal-screen">
+      <h2 class="prize-title" id="prize-title">FELICIDADES<br>DANI</h2>
       <button class="cover-tile" id="close-prize" type="button" aria-label="Cerrar la carátula de Grand Theft Auto VI" autofocus>
         <span class="tile-art cover-art" id="cover-art" aria-hidden="true">
           <span>GTA <strong>VI</strong></span>
           <span class="asset-label">CARÁTULA</span>
         </span>
       </button>
+      <img class="reveal-decoration reveal-asta" src="./images/asta.png" alt="" width="900" height="900">
+      <img class="reveal-decoration reveal-gif" src="./images/evangelion1.gif" alt="" width="118" height="200">
     </div>
   </dialog>
 </body>

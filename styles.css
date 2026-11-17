@@ -73,13 +73,14 @@ h1 {
   font-weight: 900;
   line-height: .94;
   letter-spacing: -.07em;
+  text-wrap: balance;
 }
 
 h1 { font-size: clamp(52px, 8.3vw, 123px); }
 h1 em { color: var(--purple); }
 [data-stage="box"] h1 em { display: block; }
-.experience:not([data-stage="box"]) h1 { font-size: clamp(46px, 7.5vw, 95px); }
-.description { margin: 20px 0 0; color: #4d365f; font-size: clamp(15px, 2vw, 20px); line-height: 1.45; font-weight: 620; }
+.experience:not([data-stage="box"]) h1 { font-size: clamp(52px, 8vw, 104px); }
+.description { margin: 20px 0 0; color: #4d365f; font-size: clamp(18px, 2.2vw, 24px); line-height: 1.4; font-weight: 620; }
 
 .stage, .presentation { display: grid; place-items: center; width: 100%; min-width: 0; }
 [data-stage="box"] .stage {
@@ -349,19 +350,54 @@ dialog[open] {
 }
 
 .reveal-screen {
-  --screen-top: max(16px, env(safe-area-inset-top));
-  --screen-bottom: max(16px, env(safe-area-inset-bottom));
-  --cover-height: calc(100dvh - var(--screen-top) - var(--screen-bottom));
-  min-height: 100%;
-  padding: var(--screen-top) max(16px, env(safe-area-inset-right)) var(--screen-bottom) max(16px, env(safe-area-inset-left));
+  --screen-block: max(16px, env(safe-area-inset-top), env(safe-area-inset-bottom));
+  --screen-inline: max(16px, env(safe-area-inset-left), env(safe-area-inset-right));
+  --title-size: min(14.2vw, 15dvh, 112px);
+  --title-line-height: .95;
+  --title-gap: 16px;
+  --title-space: calc(2 * var(--title-size) * var(--title-line-height) + var(--title-gap));
+  --cover-height: calc(100dvh - 2 * var(--screen-block) - var(--title-space));
+  position: relative;
+  height: 100%;
+  padding: var(--screen-block) var(--screen-inline);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  align-content: center;
+  grid-template-rows: minmax(var(--title-space), 1fr) auto minmax(0, 1fr);
   justify-items: center;
   text-align: center;
 }
 
+.prize-title {
+  z-index: 4;
+  align-self: end;
+  margin: 0 0 var(--title-gap);
+  font-size: var(--title-size);
+  font-weight: 950;
+  line-height: var(--title-line-height);
+  letter-spacing: -.04em;
+  text-shadow: 2px 3px var(--gold);
+}
+
 .cover-tile { width: min(100%, 530px, var(--cover-height)); border-radius: 16px; }
+.reveal-decoration {
+  position: absolute;
+  z-index: 3;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  display: block;
+  height: auto;
+  pointer-events: none;
+}
+
+.reveal-asta {
+  left: max(8px, env(safe-area-inset-left));
+  width: min(43vw, 44dvh, 340px);
+}
+
+.reveal-gif {
+  right: max(8px, env(safe-area-inset-right));
+  width: min(57vw, 36dvh, 380px);
+}
+
 dialog[open] .cover-tile {
   animation:
     cover-reveal .58s .10s ease-out both,
@@ -456,9 +492,11 @@ dialog[open] .cover-tile {
   .experience[data-stage="box"] { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   [data-stage="box"] .intro { text-align: center; }
   [data-stage="box"] .stage { min-height: 220px; }
-  h1 { font-size: clamp(52px, 13vw, 88px); }
+  .eyebrow { font-size: 14px; }
+  h1 { font-size: clamp(52px, 18vw, 104px); }
+  .experience:not([data-stage="box"]) h1 { font-size: clamp(50px, 16vw, 96px); }
   h1 em { line-height: .9; }
-  .description { margin-top: 15px; }
+  .description { margin-top: 15px; font-size: clamp(18px, 5.3vw, 24px); }
   .box-art { box-shadow: 5px 6px var(--ink); }
 }
 
